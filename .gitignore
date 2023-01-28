@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+*.patch
+/.vs
+/Hackathon_22_208_0012/*
+!/Hackathon_22_208_0012/Pages
+/Hackathon_22_208_0012/Pages/*
+!/Hackathon_22_208_0012/Pages/AC
+/BackUp
+/Customization
+/ACPROOpenAI/bin
+/ACPROOpenAI/obj
+/ACPROOpenAI/packages
+/Snapshots
+/TemporaryAspFiles
+/packages
