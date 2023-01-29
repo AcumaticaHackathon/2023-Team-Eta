@@ -18,6 +18,9 @@ using System.Text;
 using PX.Data.BQL;
 using PX.Data.BQL.Fluent;
 using PX.Objects.AR;
+using PX.Data.Licensing;
+using Contact = PX.Objects.CR.Contact;
+using System;
 
 namespace ACPROpenAI.GraphExtensions.CR
 {
@@ -32,15 +35,9 @@ namespace ACPROpenAI.GraphExtensions.CR
         private ACPRCRSetupExt aCPRCRSetupExt;
         #endregion
 
-        //TODO Clarify this part of the implementation.
-        //IMPORTANT!!! This is an experimental implementation of a custom action that allows creating response buy action
-        //It should be clarified with the product owner
-
         #region DataViews
         [CRReference(typeof(CRCase.customerID), typeof(CRCase.contactID))]
         public ACPRCRActivityListView<CRCase> ACPRCRActivity;
-
-        public PXSelect<ACPROrderListProj> ACPROrderListProj;
         #endregion
 
         #region Dependency Injection
@@ -59,153 +56,63 @@ namespace ACPROpenAI.GraphExtensions.CR
         }
         #endregion
 
-        #region Override
-        public delegate void PersistDelegate();
-        [PXOverride]
-        public void Persist(PersistDelegate baseMethod)
+        #region Events
+        public virtual void __(Events.RowSelected<CRCase> e)
         {
-            if (Base.Case.Current?.Description != null)
+            if(e.Row != null)
             {
-                var requestResult = _openAIRestService.RequestToAI(Base.Case.Current?.Description.ToPlainText());
-                if (requestResult.Choices != null)
+                CRCase row = e.Row as CRCase;
+                if(row != null)
                 {
-                    var caseExt = PXCache<CRCase>.GetExtension<ACPRCRCaseExt>(Base.Case.Current);
-                    caseExt.UsrACPRAIAnswer = requestResult.Choices[0].Text;
+                    ACPRGenerateAIResponse.SetEnabled(row.Status == "N" || row.Status == "O");
                 }
             }
+        }
+        #endregion
 
-            baseMethod();
+        #region Methods
+        private static void GenerateAIResponse(CRCase crCase)
+        {
+            CRCaseMaint graph = PXGraph.CreateInstance<CRCaseMaint>();
+            ACPRCRCaseMaintExt graphExt = graph.GetExtension<ACPRCRCaseMaintExt>();
+
+            graph.Case.Update(crCase);
+
+            if (!string.IsNullOrEmpty(crCase.Description))
+            {
+                ResponseModel requestResult = graphExt._openAIRestService.RequestToAI(graph.Case.Current?.Description.ToPlainText());
+                if (requestResult.Choices != null)
+                {
+                    ACPRCRCaseExt caseExt = PXCache<CRCase>.GetExtension<ACPRCRCaseExt>(graph.Case.Current);
+                    caseExt.UsrACPRAIAnswer = requestResult.Choices[0].Text;
+
+                    crCase.IsActive = true;
+                    crCase.Resolution = "CR";
+                    crCase.ResolutionDate = null;
+                    crCase.Status = "P";
+                    crCase.StatusDate = DateTime.Now;
+
+                    _ = graph.Case.Update(crCase);
+
+                    graph.Actions.PressSave();
+                }
+            }
         }
         #endregion
 
         #region Actions
-        //TODO Clarify this part of the implementation.
-        //IMPORTANT!!! This is an experimental implementation of a custom action that allows creating response buy action
-        //It should be clarified with the product owner
-
-        //public PXAction<CRCase> ACPRCreateAIEmail;
-        //[PXUIField(DisplayName = "Create AI Email", MapEnableRights = PXCacheRights.Update, MapViewRights = PXCacheRights.Update, Visible = false)]
-        //[PXButton(CommitChanges = true, Connotation = ActionConnotation.None, DisplayOnMainToolbar = true)]
-        //public virtual IEnumerable aCPRCreateAIEmail(PXAdapter adapter)
-        //{
-        //    if (Base.Case.Current != null)
-        //    {
-        //        var restService = _openAIRestService;
-        //        var currentCase = Base.Case.Current;
-        //        var activity = ACPRCRActivity;
-        //        var baseActivity = Base.Activities;
-
-        //        if (aCPRCRSetupExt.UsrACPRAllowAutoGenerateEMail == true)
-        //        {
-        //            CreateEmail(restService, currentCase, activity, baseActivity, aCPRCRSetupExt);
-        //        }
-        //    }
-
-        //    return adapter.Get();
-        //}
-
         public PXAction<CRCase> ACPRGenerateAIResponse;
         [PXUIField(DisplayName = "Generate AI Response", MapEnableRights = PXCacheRights.Update, MapViewRights = PXCacheRights.Update, Visible = true)]
         [PXButton(CommitChanges = true, Connotation = ActionConnotation.None, DisplayOnMainToolbar = true)]
         public virtual IEnumerable aCPRGenerateAIResponse(PXAdapter adapter)
         {
-            if (ACPROrderListProj.AskExt() == WebDialogResult.OK)
+            CRCase cRCase = Base.Case.Current;
+            if(cRCase != null)
             {
-                var selectedRows = ACPROrderListProj.Select().RowCast<ACPROrderListProj>().Where(_=>_.Selected == true).ToList();
-                var items= new List<InventoryItem>();
-
-                var ordersForRequest = new List<SOOrder>();
-                var details = new List<SOLine>();
-
-                foreach (var row in selectedRows)
-                {
-                    PXSelect<
-                        SOLine,
-                        Where<SOLine.orderType, Equal<Required<SOLine.orderType>>,
-                            And<SOLine.orderNbr, Equal<Required<SOLine.orderNbr>>>>>
-                        .Select(Base, row.OrderType, row.OrderNbr).RowCast<SOLine>().ToList().ForEach(_ =>
-                        {
-                            var inventoryItem = PXSelect<InventoryItem, Where<InventoryItem.inventoryID, Equal<Required<InventoryItem.inventoryID>>>>.Select(Base, _.InventoryID);
-                            items.Add(inventoryItem);
-
-                            details.Add(_);
-                        });
-
-                    var ord = SelectFrom<SOOrder>.Where<SOOrder.orderNbr.IsEqual<@P.AsString>.And<SOOrder.orderType.IsEqual<@P.AsString>>>.View.Select(Base,
-                                  row.OrderNbr, row.OrderType);
-
-                    ordersForRequest.Add(ord);
-
-                }
-
-                var customer = SelectFrom<Customer>.Where<Customer.bAccountID.IsEqual<@P.AsInt>>.View
-                    .Select(Base, Base.Case.Current.ContactID).FirstOrDefault();
-
-                var sb = new StringBuilder();
-
-                details.ForEach(a =>
-                {
-                    string lineDetails = $" Branch: {a.BranchID}, inventoryid: \"{a.InventoryID}\", LineDescription: \"{a.TranDesc}\", Quantity: {a.Qty}, " +
-                                         $"OrderType: {a.OrderType}, OrderNbr: {a.OrderNbr} ";
-                    sb.Append(lineDetails);
-                });
-
-                ordersForRequest.ForEach(_ =>
-                {
-                    sb.Append("Order: " + _.OrderNbr + " status: " + _.Status + " date: " + _.OrderDate + " Description: " + _.OrderDesc);
-                } );
-
-                if (Base.Case.Current.ContactID != null)
-                {
-                    var contact = PXSelect<Contact, Where<Contact.contactID, Equal<Required<Contact.contactID>>>>.Select(Base, Base.Case.Current.ContactID).FirstTableItems.FirstOrDefault();
-                    sb.Append("Contact: " + contact.FirstName + " " + contact.LastName +"\n");
-                }
-                string orders = string.Empty;
-                items.ForEach(_ =>
-                {
-                    orders += _.InventoryCD + " " + _.Descr + ", ";
-                });
-                sb.Append($"Customer Orderer: {orders}\n");
-                sb.Append($"Description: {Base.Case.Current.Description.ToPlainText()}\n");
-                var requestResult = _openAIRestService.RequestToAI(sb.ToString());
-                if (requestResult.Choices[0] != null)
-                {
-                    ACPRCRActivity.MailBody = requestResult.Choices[0].Text;
-                    ACPRCRActivity.DefaultSubject = Base.Activities.DefaultSubject;
-                    ACPRCRActivity.GetNewEmailAddress = Base.Activities.GetNewEmailAddress;
-                    var result = ACPRCRActivity.CreateNewEmailActivity();
-                    result.Item2.Send.PressButton();
-                }
+                PXLongOperation.StartOperation(this.Base, () => GenerateAIResponse(cRCase));
             }
-
             return adapter.Get();
         }
         #endregion
-
-        //#region Service Methods
-        //protected virtual void CreateEmail(IACPROpenAIRestService restService, CRCase currentCase, ACPRCRActivityListView<CRCase> activity, CRActivityList<CRCase> baseActivity, ACPRCRSetupExt aCPRCRSetupExt)
-        //{
-        //    PXLongOperation.StartOperation(Base.UID, () =>
-        //    {
-        //        var requestResult = restService.RequestToAI(currentCase.Description.ToPlainText());
-        //        if (requestResult.Choices[0] != null)
-        //        {
-        //            CreateEmail(activity, baseActivity, requestResult, aCPRCRSetupExt);
-        //        }
-        //    });
-        //}
-        //private static void CreateEmail(ACPRCRActivityListView<CRCase> activity, CRActivityList<CRCase> baseActivity, ResponseModel requestResult, ACPRCRSetupExt aCPRCRSetupExt)
-        //{
-        //    activity.MailBody = requestResult.Choices[0].Text;
-        //    activity.DefaultSubject = baseActivity.DefaultSubject;
-        //    activity.GetNewEmailAddress = baseActivity.GetNewEmailAddress;
-        //    var result = activity.CreateNewEmailActivity();
-
-        //    if (aCPRCRSetupExt.UsrACPRAllowAutoSendEMail == true)
-        //    {
-        //        result.Item2.Send.PressButton();
-        //    }
-        //}
-        //#endregion
     }
 }

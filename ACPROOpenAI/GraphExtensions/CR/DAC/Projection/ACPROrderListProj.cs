@@ -20,7 +20,7 @@ namespace ACPROpenAI.GraphExtensions.CR.DAC.Projection
 
         #region Selected
         [PXBool]
-        [PXDefault(false, PersistingCheck = PXPersistingCheck.Nothing)]
+        [PXUnboundDefault(true)]
         [PXUIField(DisplayName = "Selected")]
         public virtual bool? Selected { get; set; }
         public abstract class selected : PX.Data.BQL.BqlBool.Field<selected> { }

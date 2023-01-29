@@ -33,48 +33,64 @@
   <ItemGroup>
     <Reference Include="Autofac">
       <HintPath>..\Hackathon_22_208_0012\Bin\Autofac.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Hackathon_22_208_0012\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Hackathon_22_208_0012\Bin\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PX.BusinessProcess">
       <HintPath>..\Hackathon_22_208_0012\Bin\PX.BusinessProcess.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PX.Common">
       <HintPath>..\Hackathon_22_208_0012\Bin\PX.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PX.Common.Mail">
       <HintPath>..\Hackathon_22_208_0012\Bin\PX.Common.Mail.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PX.Common.Std">
       <HintPath>..\Hackathon_22_208_0012\Bin\PX.Common.Std.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PX.CS.Contracts">
       <HintPath>..\Hackathon_22_208_0012\Bin\PX.CS.Contracts.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PX.Data">
       <HintPath>..\Hackathon_22_208_0012\Bin\PX.Data.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PX.Data.BQL.Dynamic">
       <HintPath>..\Hackathon_22_208_0012\Bin\PX.Data.BQL.Dynamic.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PX.Data.BQL.Fluent">
       <HintPath>..\Hackathon_22_208_0012\Bin\PX.Data.BQL.Fluent.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PX.DbServices">
       <HintPath>..\Hackathon_22_208_0012\Bin\PX.DbServices.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PX.Objects">
       <HintPath>..\Hackathon_22_208_0012\Bin\PX.Objects.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PX.Web.Customization">
       <HintPath>..\Hackathon_22_208_0012\Bin\PX.Web.Customization.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PX.Web.UI">
       <HintPath>..\Hackathon_22_208_0012\Bin\PX.Web.UI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\Hackathon_22_208_0012\Bin\RestSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
