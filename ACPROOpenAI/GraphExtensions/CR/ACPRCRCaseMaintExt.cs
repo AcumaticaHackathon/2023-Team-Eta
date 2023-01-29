@@ -75,6 +75,13 @@ namespace ACPROpenAI.GraphExtensions.CR
                     ACPRCRCaseExt caseExt = PXCache<CRCase>.GetExtension<ACPRCRCaseExt>(graph.Case.Current);
                     caseExt.UsrACPRAIAnswer = requestResult.Choices[0].Text;
 
+                    ACPRCRActivityListView<CRCase> aCPRCRActivity = new ACPRCRActivityListView<CRCase>(graph);
+                    aCPRCRActivity.MailBody = requestResult.Choices[0].Text;
+                    aCPRCRActivity.DefaultSubject = graph.Activities.DefaultSubject;
+                    aCPRCRActivity.GetNewEmailAddress = graph.Activities.GetNewEmailAddress;
+                    var result = aCPRCRActivity.CreateNewEmailActivity();
+                    result.Item2.Send.PressButton();
+
                     crCase.IsActive = true;
                     crCase.Resolution = "CR";
                     crCase.ResolutionDate = null;
