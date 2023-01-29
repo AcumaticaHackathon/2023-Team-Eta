@@ -1,8 +1,5 @@
-﻿using ACPROpenAI.DAC;
-using ACPROpenAI.DAC.OpenAIConnectionPreferences;
+﻿using ACPROpenAI.DAC.OpenAIConnectionPreferences;
 using ACPROpenAI.Descriptor;
-using ACPROpenAI.Helpers;
-using ACPROpenAI.Models;
 using ACPROpenAI.Services.Abstractions;
 using PX.Common;
 using PX.Data;

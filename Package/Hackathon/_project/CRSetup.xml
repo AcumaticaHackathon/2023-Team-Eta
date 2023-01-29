@@ -1,0 +1,4 @@
+﻿<Table TableName="CRSetup">
+    <Column TableName="CRSetup" ColumnName="UsrACPRAllowAutoGenerateEMail" ColumnType="bool" AllowNull="True" DecimalPrecision="0" DecimalLength="0" IsNewColumn="True" IsUnicode="True" />
+    <Column TableName="CRSetup" ColumnName="UsrACPRAllowAutoSendEMail" ColumnType="bool" AllowNull="True" DecimalPrecision="0" DecimalLength="0" IsNewColumn="True" IsUnicode="True" />
+</Table>

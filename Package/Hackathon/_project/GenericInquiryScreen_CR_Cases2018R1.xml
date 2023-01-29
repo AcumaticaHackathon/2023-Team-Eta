@@ -1,0 +1,329 @@
+﻿<GenericInquiryScreen>
+    <data-set>
+        <relations format-version="3" relations-version="20220426" main-table="GIDesign" stable-sharing="True" file-name="(Name)">
+            <link from="GIFilter (DesignID)" to="GIDesign (DesignID)" />
+            <link from="GIGroupBy (DesignID)" to="GIDesign (DesignID)" />
+            <link from="GIMassAction (DesignID)" to="GIDesign (DesignID)" />
+            <link from="GIMassUpdateField (DesignID)" to="GIDesign (DesignID)" />
+            <link from="GINavigationScreen (DesignID)" to="GIDesign (DesignID)" />
+            <link from="GINavigationParameter (DesignID, NavigationScreenLineNbr)" to="GINavigationScreen (DesignID, LineNbr)" />
+            <link from="GINavigationCondition (DesignID, NavigationScreenLineNbr)" to="GINavigationScreen (DesignID, LineNbr)" />
+            <link from="GIOn (DesignID, RelationNbr)" to="GIRelation (DesignID, LineNbr)" />
+            <link from="GIRecordDefault (DesignID)" to="GIDesign (DesignID)" />
+            <link from="GIRelation (DesignID, ParentTable)" to="GITable (DesignID, Alias)" />
+            <link from="GIRelation (DesignID, ChildTable)" to="GITable (DesignID, Alias)" />
+            <link from="GIResult (DesignID)" to="GIDesign (DesignID)" />
+            <link from="GIResult (ObjectName, DesignID)" to="GITable (Alias, DesignID)" />
+            <link from="GISort (DesignID)" to="GIDesign (DesignID)" />
+            <link from="GITable (DesignID)" to="GIDesign (DesignID)" />
+            <link from="GIWhere (DesignID)" to="GIDesign (DesignID)" />
+            <link from="SiteMap (Url)" to="GIDesign (DesignID)" type="WeakByUrl" linkname="toDesignById" baseurl="~/GenericInquiry/GenericInquiry.aspx" paramnames="id" />
+            <link from="SiteMap (Url)" to="GIDesign (Name)" type="WeakByUrl" linkname="toDesignByName" baseurl="~/GenericInquiry/GenericInquiry.aspx" />
+            <link from="ListEntryPoint (ListScreenID)" to="SiteMap (ScreenID)" />
+            <link from="SiteMap (ScreenID)" to="GIDesign (PrimaryScreenIDNew)" linkname="to1Screen" />
+            <link from="FilterHeader (ScreenID)" to="SiteMap (ScreenID)" />
+            <link from="FilterRow (FilterID)" to="FilterHeader (FilterID)" />
+            <link from="PivotTable (NoteID)" to="FilterHeader (RefNoteID)" />
+            <link from="PivotField (ScreenID, PivotTableID)" to="PivotTable (ScreenID, PivotTableID)" />
+            <link from="MUIScreen (NodeID)" to="SiteMap (NodeID)" />
+            <link from="MUIWorkspace (WorkspaceID)" to="MUIScreen (WorkspaceID)" type="FromMaster" linkname="workspaceToScreen" split-location="yes" updateable="True" />
+            <link from="MUISubcategory (SubcategoryID)" to="MUIScreen (SubcategoryID)" type="FromMaster" updateable="True" />
+            <link from="MUITile (ScreenID)" to="SiteMap (ScreenID)" />
+            <link from="MUIWorkspace (WorkspaceID)" to="MUITile (WorkspaceID)" type="FromMaster" linkname="workspaceToTile" split-location="yes" updateable="True" />
+            <link from="MUIArea (AreaID)" to="MUIWorkspace (AreaID)" type="FromMaster" updateable="True" />
+            <link from="MUIPinnedScreen (NodeID, WorkspaceID)" to="MUIScreen (NodeID, WorkspaceID)" type="WeakIfEmpty" isEmpty="Username" />
+            <link from="MUIFavoriteWorkspace (WorkspaceID)" to="MUIWorkspace (WorkspaceID)" type="WeakIfEmpty" isEmpty="Username" />
+            <link from="GIDesign (NoteID)" to="Note (NoteID)" type="Note" />
+            <link from="GIFilter (NoteID)" to="Note (NoteID)" type="Note" />
+            <link from="GIFilter (NoteID)" to="GIFilterKvExt (RecordID)" type="RowKvExt" />
+            <link from="GIGroupBy (NoteID)" to="Note (NoteID)" type="Note" />
+            <link from="GIOn (NoteID)" to="Note (NoteID)" type="Note" />
+            <link from="GIRelation (NoteID)" to="Note (NoteID)" type="Note" />
+            <link from="GIResult (NoteID)" to="Note (NoteID)" type="Note" />
+            <link from="GIResult (NoteID)" to="GIResultKvExt (RecordID)" type="RowKvExt" />
+            <link from="GISort (NoteID)" to="Note (NoteID)" type="Note" />
+            <link from="GITable (NoteID)" to="Note (NoteID)" type="Note" />
+            <link from="GIWhere (NoteID)" to="Note (NoteID)" type="Note" />
+            <link from="FilterHeader (NoteID)" to="Note (NoteID)" type="Note" />
+            <link from="FilterHeader (NoteID)" to="FilterHeaderKvExt (RecordID)" type="RowKvExt" />
+        </relations>
+        <layout>
+            <table name="GIDesign">
+                <table name="GIFilter" uplink="(DesignID) = (DesignID)">
+                    <table name="Note" uplink="(NoteID) = (NoteID)" />
+                    <table name="GIFilterKvExt" uplink="(NoteID) = (RecordID)" />
+                </table>
+                <table name="GIGroupBy" uplink="(DesignID) = (DesignID)">
+                    <table name="Note" uplink="(NoteID) = (NoteID)" />
+                </table>
+                <table name="GIMassAction" uplink="(DesignID) = (DesignID)" />
+                <table name="GIMassUpdateField" uplink="(DesignID) = (DesignID)" />
+                <table name="GINavigationScreen" uplink="(DesignID) = (DesignID)">
+                    <table name="GINavigationParameter" uplink="(DesignID, LineNbr) = (DesignID, NavigationScreenLineNbr)" />
+                    <table name="GINavigationCondition" uplink="(DesignID, LineNbr) = (DesignID, NavigationScreenLineNbr)" />
+                </table>
+                <table name="GIRecordDefault" uplink="(DesignID) = (DesignID)" />
+                <table name="GISort" uplink="(DesignID) = (DesignID)">
+                    <table name="Note" uplink="(NoteID) = (NoteID)" />
+                </table>
+                <table name="GITable" uplink="(DesignID) = (DesignID)">
+                    <table name="GIRelation" uplink="(DesignID, Alias) = (DesignID, ParentTable)">
+                        <table name="GIOn" uplink="(DesignID, LineNbr) = (DesignID, RelationNbr)">
+                            <table name="Note" uplink="(NoteID) = (NoteID)" />
+                        </table>
+                        <table name="Note" uplink="(NoteID) = (NoteID)" />
+                    </table>
+                    <table name="GIResult" uplink="(Alias, DesignID) = (ObjectName, DesignID)">
+                        <table name="Note" uplink="(NoteID) = (NoteID)" />
+                        <table name="GIResultKvExt" uplink="(NoteID) = (RecordID)" />
+                    </table>
+                    <table name="Note" uplink="(NoteID) = (NoteID)" />
+                </table>
+                <table name="GIWhere" uplink="(DesignID) = (DesignID)">
+                    <table name="Note" uplink="(NoteID) = (NoteID)" />
+                </table>
+                <table name="SiteMap" uplink="(DesignID) = (Url)" linkname="toDesignById">
+                    <table name="ListEntryPoint" uplink="(ScreenID) = (ListScreenID)" />
+                    <table name="FilterHeader" uplink="(ScreenID) = (ScreenID)">
+                        <table name="FilterRow" uplink="(FilterID) = (FilterID)" />
+                        <table name="PivotTable" uplink="(RefNoteID) = (NoteID)">
+                            <table name="PivotField" uplink="(ScreenID, PivotTableID) = (ScreenID, PivotTableID)" />
+                        </table>
+                        <table name="Note" uplink="(NoteID) = (NoteID)" />
+                        <table name="FilterHeaderKvExt" uplink="(NoteID) = (RecordID)" />
+                    </table>
+                    <table name="MUIScreen" uplink="(NodeID) = (NodeID)">
+                        <table name="MUIPinnedScreen" uplink="(NodeID, WorkspaceID) = (NodeID, WorkspaceID)" />
+                    </table>
+                    <table name="MUITile" uplink="(ScreenID) = (ScreenID)" />
+                </table>
+                <table name="SiteMap" uplink="(Name) = (Url)" linkname="toDesignByName">
+                    <table name="ListEntryPoint" uplink="(ScreenID) = (ListScreenID)" />
+                    <table name="FilterHeader" uplink="(ScreenID) = (ScreenID)">
+                        <table name="FilterRow" uplink="(FilterID) = (FilterID)" />
+                        <table name="PivotTable" uplink="(RefNoteID) = (NoteID)">
+                            <table name="PivotField" uplink="(ScreenID, PivotTableID) = (ScreenID, PivotTableID)" />
+                        </table>
+                        <table name="Note" uplink="(NoteID) = (NoteID)" />
+                        <table name="FilterHeaderKvExt" uplink="(NoteID) = (RecordID)" />
+                    </table>
+                    <table name="MUIScreen" uplink="(NodeID) = (NodeID)">
+                        <table name="MUIPinnedScreen" uplink="(NodeID, WorkspaceID) = (NodeID, WorkspaceID)" />
+                    </table>
+                    <table name="MUITile" uplink="(ScreenID) = (ScreenID)" />
+                </table>
+                <table name="SiteMap" uplink="(PrimaryScreenIDNew) = (ScreenID)" linkname="to1Screen">
+                    <table name="ListEntryPoint" uplink="(ScreenID) = (ListScreenID)" />
+                    <table name="FilterHeader" uplink="(ScreenID) = (ScreenID)">
+                        <table name="FilterRow" uplink="(FilterID) = (FilterID)" />
+                        <table name="PivotTable" uplink="(RefNoteID) = (NoteID)">
+                            <table name="PivotField" uplink="(ScreenID, PivotTableID) = (ScreenID, PivotTableID)" />
+                        </table>
+                        <table name="Note" uplink="(NoteID) = (NoteID)" />
+                        <table name="FilterHeaderKvExt" uplink="(NoteID) = (RecordID)" />
+                    </table>
+                    <table name="MUIScreen" uplink="(NodeID) = (NodeID)">
+                        <table name="MUIPinnedScreen" uplink="(NodeID, WorkspaceID) = (NodeID, WorkspaceID)" />
+                    </table>
+                    <table name="MUITile" uplink="(ScreenID) = (ScreenID)" />
+                </table>
+                <table name="Note" uplink="(NoteID) = (NoteID)" />
+            </table>
+            <table name="MUIWorkspace">
+                <table name="MUIFavoriteWorkspace" uplink="(WorkspaceID) = (WorkspaceID)" />
+            </table>
+            <table name="MUISubcategory" />
+            <table name="MUIArea" />
+        </layout>
+        <data>
+            <GIDesign>
+                <row DesignID="24d48139-cf11-4be6-9bd3-57ee86893779" Name="CR-Cases2018R1" FilterColCount="3" PageSize="0" PrimaryScreenIDNew="CR306000" NewRecordCreationEnabled="1" MassDeleteEnabled="0" AutoConfirmDelete="0" MassRecordsUpdateEnabled="0" MassActionsOnRecordsEnabled="0" ExposeViaOData="0" ExposeViaMobile="0" ShowDeletedRecords="0">
+                    <GINavigationScreen Link="FS3003DB" LineNbr="10" SortOrder="10" WindowMode="L" IsActive="1" Icon="work" NoteID="b47438db-a714-49b6-92a1-393acaf4df4a">
+                        <GINavigationParameter LineNbr="1" FieldName="CaseCD" ParameterName="CRCase.caseCD" IsExpression="0" />
+                    </GINavigationScreen>
+                    <GINavigationScreen Link="AR3012DB" LineNbr="9" SortOrder="9" WindowMode="L" IsActive="1" Icon="add_circle" NoteID="5169a827-3992-4d42-88cd-64614121f136">
+                        <GINavigationParameter LineNbr="1" FieldName="CustomerAccountID" ParameterName="CRCase.customerID" IsExpression="0" />
+                    </GINavigationScreen>
+                    <GINavigationScreen Link="SO3012DB" LineNbr="8" SortOrder="8" WindowMode="L" IsActive="1" Icon="pen_frame" NoteID="42e191d8-f649-4ed3-85f8-8386324203c3">
+                        <GINavigationParameter LineNbr="1" FieldName="CustomerAccountID" ParameterName="CRCase.customerID" IsExpression="0" />
+                    </GINavigationScreen>
+                    <GINavigationScreen Link="CR3061DB" LineNbr="7" SortOrder="7" WindowMode="L" IsActive="1" Icon="life-bouy" NoteID="c339d22d-2a88-4e6b-8e05-3fdfef200bd7">
+                        <GINavigationParameter LineNbr="1" FieldName="CaseCD" ParameterName="CRCase.caseCD" IsExpression="0" />
+                    </GINavigationScreen>
+                    <GINavigationScreen Link="FS3057DB" LineNbr="6" SortOrder="6" WindowMode="L" IsActive="1" Icon="handshake" NoteID="336d2678-366f-4fbb-8548-8a0bea4665bd">
+                        <GINavigationParameter LineNbr="1" FieldName="CustomerAccountID" ParameterName="CRCase.customerID" IsExpression="0" />
+                    </GINavigationScreen>
+                    <GINavigationScreen Link="CR306000" LineNbr="5" SortOrder="5" WindowMode="L" IsActive="1" Icon="visibility" NoteID="5c7b065b-8968-4f7a-8d36-adcaf47e168e">
+                        <GINavigationParameter LineNbr="1" FieldName="CaseCD" ParameterName="CRCase.caseCD" IsExpression="0" />
+                    </GINavigationScreen>
+                    <GINavigationScreen Link="CR302000" LineNbr="4" SortOrder="4" WindowMode="N" IsActive="1" NoteID="ae9df91b-13a4-4713-ad7d-81e3db4632aa">
+                        <GINavigationParameter LineNbr="1" FieldName="ContactID" ParameterName="Contact.contactID" IsExpression="0" />
+                    </GINavigationScreen>
+                    <GINavigationScreen Link="CR303000" LineNbr="3" SortOrder="3" WindowMode="N" IsActive="1" NoteID="09064055-daac-4039-977a-1d64a079bd59">
+                        <GINavigationParameter LineNbr="1" FieldName="AcctCD" ParameterName="CRCase.customerID" IsExpression="0" />
+                    </GINavigationScreen>
+                    <GINavigationScreen Link="CR306000" LineNbr="2" SortOrder="2" WindowMode="I" IsActive="1" NoteID="764c131c-ebd7-4d5d-ae81-a7f5452ac8dd">
+                        <GINavigationParameter LineNbr="1" FieldName="CaseCD" ParameterName="CRCase.CaseCD" IsExpression="0" />
+                    </GINavigationScreen>
+                    <GINavigationScreen Link="CT301000" LineNbr="1" SortOrder="1" WindowMode="N" IsActive="1" NoteID="9f41e4af-8dae-4a08-b235-9d7c1cdb3c0c">
+                        <GINavigationParameter LineNbr="1" FieldName="ContractCD" ParameterName="Contract.contractCD" IsExpression="0" />
+                    </GINavigationScreen>
+                    <GISort LineNbr="2" IsActive="1" DataFieldName="CRCase.caseCD" SortOrder="D" />
+                    <GITable Alias="Location" Name="PX.Objects.CR.Location">
+                        <GIResult LineNbr="33" SortOrder="33" IsActive="1" Field="locationCD" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="4e8544ad-fdac-48c8-a7ea-46f38443a54f" />
+                    </GITable>
+                    <GITable Alias="LastModifiedBy" Name="PX.SM.Users">
+                        <GIResult LineNbr="43" SortOrder="43" IsActive="1" Field="fullName" Caption="Last Modified By" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="4e587b5d-7b88-4be7-93c5-67429d129ec0" />
+                    </GITable>
+                    <GITable Alias="EPCompanyTree" Name="PX.TM.EPCompanyTree">
+                        <GIResult LineNbr="12" SortOrder="12" IsActive="1" Field="description" Caption="Workgroup" IsVisible="1" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="cb26317c-7903-4c56-a8ea-d9583ec0be3c" />
+                    </GITable>
+                    <GITable Alias="CreatedBy" Name="PX.SM.Users">
+                        <GIResult LineNbr="42" SortOrder="42" IsActive="1" Field="fullName" Caption="Created By" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="f377390c-b853-4dce-b3fe-a7d155139500" />
+                    </GITable>
+                    <GITable Alias="CRCaseClass" Name="PX.Objects.CR.CRCaseClass">
+                        <GIResult LineNbr="14" SortOrder="14" IsActive="1" Field="description" Caption="Class Name" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="d2e40029-0bf7-46e4-a213-c906d54a63c7" />
+                    </GITable>
+                    <GITable Alias="CRCase" Name="PX.Objects.CR.CRCase">
+                        <GIRelation LineNbr="12" ChildTable="LastModifiedBy" IsActive="1" JoinType="L">
+                            <GIOn LineNbr="12" ParentField="lastModifiedByID" Condition="E" ChildField="pKID" Operation="A" />
+                        </GIRelation>
+                        <GIRelation LineNbr="11" ChildTable="CreatedBy" IsActive="1" JoinType="L">
+                            <GIOn LineNbr="11" ParentField="createdByID" Condition="E" ChildField="pKID" Operation="A" />
+                        </GIRelation>
+                        <GIRelation LineNbr="7" ChildTable="CRCaseClass" IsActive="1" JoinType="L">
+                            <GIOn LineNbr="7" ParentField="caseClassID" Condition="E" ChildField="caseClassID" Operation="A" />
+                        </GIRelation>
+                        <GIRelation LineNbr="6" ChildTable="Location" IsActive="1" JoinType="L">
+                            <GIOn LineNbr="6" ParentField="locationID" Condition="E" ChildField="locationID" Operation="A" />
+                        </GIRelation>
+                        <GIRelation LineNbr="5" ChildTable="Contract" IsActive="1" JoinType="L">
+                            <GIOn LineNbr="5" ParentField="contractID" Condition="E" ChildField="contractID" Operation="A" />
+                        </GIRelation>
+                        <GIRelation LineNbr="4" ChildTable="EPCompanyTree" IsActive="1" JoinType="L">
+                            <GIOn LineNbr="4" ParentField="workgroupID" Condition="E" ChildField="workGroupID" Operation="A" />
+                        </GIRelation>
+                        <GIRelation LineNbr="3" ChildTable="Contact" IsActive="1" JoinType="L">
+                            <GIOn LineNbr="3" ParentField="contactID" Condition="E" ChildField="contactID" Operation="A" />
+                        </GIRelation>
+                        <GIRelation LineNbr="2" ChildTable="BAccount" IsActive="1" JoinType="L">
+                            <GIOn LineNbr="2" ParentField="customerID" Condition="E" ChildField="bAccountID" Operation="A" />
+                        </GIRelation>
+                        <GIRelation LineNbr="1" ChildTable="CRActivityStatistics" IsActive="1" JoinType="L">
+                            <GIOn LineNbr="1" ParentField="noteID" Condition="E" ChildField="noteID" Operation="A" />
+                        </GIRelation>
+                        <GIResult LineNbr="47" SortOrder="47" IsActive="1" Field="description" IsVisible="0" DefaultNav="0" QuickFilter="0" FastFilter="0" RowID="4b5c903d-b0bd-4057-ae91-b6aa51a7fe96" />
+                        <GIResult LineNbr="44" SortOrder="44" IsActive="1" Field="isActive" IsVisible="1" DefaultNav="1" QuickFilter="0" FastFilter="1" RowID="1b0bc47b-2234-419e-aa7a-07d7cca4c9a9" />
+                        <GIResult LineNbr="34" SortOrder="34" IsActive="1" Field="ownerID_description" IsVisible="0" DefaultNav="0" QuickFilter="0" FastFilter="0" RowID="7a852e91-7037-4f99-92d4-5812dc50cbd5" />
+                        <GIResult LineNbr="32" SortOrder="32" IsActive="1" Field="timeResolution" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="1" RowID="0ef36f1b-ae85-4f73-aa41-bc698f66f75c" />
+                        <GIResult LineNbr="31" SortOrder="31" IsActive="1" Field="timeBillable" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="0fda58ab-d7d9-4945-af42-d7d6a5a3336b" />
+                        <GIResult LineNbr="30" SortOrder="30" IsActive="1" Field="isBillable" IsVisible="1" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="dc6ec162-c1ab-4f61-8570-99c1753d6b60" />
+                        <GIResult LineNbr="29" SortOrder="29" IsActive="1" Field="resolutionDate" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="550275a6-44bc-41da-bc1d-a721bbce4f19" />
+                        <GIResult LineNbr="28" SortOrder="28" IsActive="1" Field="assignDate" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="3170c2b1-817d-481e-867e-45b85ee87014" />
+                        <GIResult LineNbr="27" SortOrder="27" IsActive="1" Field="initResponse" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="412342a3-161c-4642-827b-4750f703472f" />
+                        <GIResult LineNbr="26" SortOrder="26" IsActive="1" Field="lastActivityAge" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="1" RowID="c436bb18-322e-4829-a116-cc77e4d0df1b" />
+                        <GIResult LineNbr="25" SortOrder="25" IsActive="1" Field="age" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="1" RowID="583b4d2b-1f85-4b8d-bee9-3c79b7392b70" />
+                        <GIResult LineNbr="24" SortOrder="24" IsActive="1" Field="eTA" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="1" RowID="16412336-16dc-4bc8-a0ec-4d0191298323" />
+                        <GIResult LineNbr="23" SortOrder="23" IsActive="1" Field="timeEstimated" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="5bf0ffe2-78f0-4569-8209-58aef5a2ff20" />
+                        <GIResult LineNbr="20" SortOrder="20" IsActive="1" Field="lastModifiedDateTime" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="bf6cba5e-599b-4db5-9f36-5d8fa93b23ac" />
+                        <GIResult LineNbr="16" SortOrder="16" IsActive="1" Field="sLAETA" IsVisible="1" DefaultNav="1" QuickFilter="1" FastFilter="1" RowID="42cdc526-7a6f-48cd-9fd7-4c3a18856f6c" />
+                        <GIResult LineNbr="15" SortOrder="15" IsActive="1" Field="createdDateTime" Caption="Created On" IsVisible="1" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="17ed474b-3fa0-4db3-b4e7-0ef66e042d31" />
+                        <GIResult LineNbr="13" SortOrder="13" IsActive="1" Field="caseClassID" IsVisible="1" DefaultNav="1" QuickFilter="1" FastFilter="0" RowID="b9d3489d-e6a9-4495-8d28-f270a08fea01" />
+                        <GIResult LineNbr="11" SortOrder="11" IsActive="1" Field="ownerID" IsVisible="1" DefaultNav="0" QuickFilter="0" FastFilter="1" RowID="7a852e91-7037-4f99-92d4-5812dc50cbd4" />
+                        <GIResult LineNbr="9" SortOrder="9" IsActive="1" Field="priority" IsVisible="1" DefaultNav="1" QuickFilter="1" FastFilter="0" RowID="7a852e91-7037-4f89-92d4-5812dc50cbd4" />
+                        <GIResult LineNbr="8" SortOrder="8" IsActive="1" Field="severity" IsVisible="1" DefaultNav="1" QuickFilter="1" FastFilter="0" RowID="22eb056d-adb3-4982-8d9f-c77a804603df" />
+                        <GIResult LineNbr="7" SortOrder="7" IsActive="1" Field="resolution" IsVisible="1" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="e601e7ff-2a0b-42e7-bcce-0c81e0b8dab1" />
+                        <GIResult LineNbr="6" SortOrder="6" IsActive="1" Field="statusDate" Caption="Status Changed Date" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="d0bd2321-c6e8-4671-8803-ddc2e8fcef4d" />
+                        <GIResult LineNbr="5" SortOrder="5" IsActive="1" Field="status" IsVisible="1" DefaultNav="1" QuickFilter="1" FastFilter="0" RowID="a1a433dc-7559-4f2a-b97e-6bae01274543" />
+                        <GIResult LineNbr="2" SortOrder="2" IsActive="1" Field="subject" IsVisible="1" DefaultNav="1" QuickFilter="0" FastFilter="1" RowID="093f7782-4032-467c-b367-a6f3ca74fd4a" />
+                        <GIResult LineNbr="1" SortOrder="1" IsActive="1" Field="caseCD" IsVisible="1" DefaultNav="0" NavigationNbr="2" QuickFilter="0" FastFilter="1" RowID="cd486157-d7e7-432e-964d-d01b34713106" />
+                    </GITable>
+                    <GITable Alias="CRActivityStatistics" Name="PX.Objects.CR.CRActivityStatistics">
+                        <GIResult LineNbr="19" SortOrder="19" IsActive="1" Field="lastActivityDate" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="33f8bea7-15d8-46d4-b8d9-eff86e00e9a2" />
+                        <GIResult LineNbr="18" SortOrder="18" IsActive="1" Field="lastOutgoingActivityDate" IsVisible="1" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="e61c160c-aa5a-40ec-a658-8b96abbdded9" />
+                        <GIResult LineNbr="17" SortOrder="17" IsActive="1" Field="lastIncomingActivityDate" IsVisible="1" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="512c9b9a-2b43-4836-b259-74cc2ed94565" />
+                    </GITable>
+                    <GITable Alias="Country" Name="PX.Objects.CS.Country">
+                        <GIResult LineNbr="35" SortOrder="35" IsActive="1" Field="description" Caption="Country" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="83f45d63-cb4d-4eea-9d2f-7ae7081c47fa" />
+                    </GITable>
+                    <GITable Alias="Contract" Name="PX.Objects.CT.Contract">
+                        <GIResult LineNbr="22" SortOrder="22" IsActive="1" Field="description" Caption="Contract Description" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="07a9473c-3296-4b01-9cc2-304b6e055676" />
+                        <GIResult LineNbr="21" SortOrder="21" IsActive="1" Field="contractCD" Caption="Contract" IsVisible="1" DefaultNav="0" NavigationNbr="1" QuickFilter="0" FastFilter="0" RowID="a51979bf-9d00-45e6-91d0-a76c5aedbd7a" />
+                    </GITable>
+                    <GITable Alias="Contact" Name="PX.Objects.CR.Contact">
+                        <GIResult LineNbr="46" SortOrder="46" IsActive="1" Field="eMail" Caption="Contact Email" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="35ffa258-414f-4a2b-a600-136f222e548a" />
+                        <GIResult LineNbr="45" SortOrder="45" IsActive="1" Field="=[Contact.ContactID]" Caption="Contact ID" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="2f0d11ae-3f06-47df-83e9-1f3de0a0851e" />
+                        <GIResult LineNbr="10" SortOrder="10" IsActive="1" Field="displayName" Caption="Contact Name" IsVisible="0" DefaultNav="0" NavigationNbr="4" QuickFilter="0" FastFilter="1" RowID="026f7f31-5047-4ebc-b788-d07f1af1559c" />
+                    </GITable>
+                    <GITable Alias="BAccount" Name="PX.Objects.CR.BAccount">
+                        <GIRelation LineNbr="9" ChildTable="Address" IsActive="1" JoinType="L">
+                            <GIOn LineNbr="9" ParentField="defAddressID" Condition="E" ChildField="addressID" Operation="A" />
+                        </GIRelation>
+                        <GIResult LineNbr="4" SortOrder="4" IsActive="1" Field="acctName" IsVisible="1" DefaultNav="1" QuickFilter="0" FastFilter="1" RowID="f36d1984-fc28-412d-bd16-a30b4a6cb036" />
+                        <GIResult LineNbr="3" SortOrder="3" IsActive="1" Field="acctCD" Caption="Business Account" IsVisible="1" DefaultNav="0" NavigationNbr="3" QuickFilter="1" FastFilter="1" RowID="c39178b1-5ae7-4e69-9d40-a2719adc4c2d" />
+                    </GITable>
+                    <GITable Alias="Address" Name="PX.Objects.CR.Address">
+                        <GIRelation LineNbr="10" ChildTable="Country" IsActive="1" JoinType="L">
+                            <GIOn LineNbr="10" ParentField="countryID" Condition="E" ChildField="countryID" Operation="A" />
+                        </GIRelation>
+                        <GIResult LineNbr="41" SortOrder="41" IsActive="1" Field="postalCode" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="709860c9-0790-43b4-8c41-4a2e5054c1c4" />
+                        <GIResult LineNbr="40" SortOrder="40" IsActive="1" Field="addressLine2" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="00bed0c8-d3d6-4145-8379-e02cc9356d51" />
+                        <GIResult LineNbr="39" SortOrder="39" IsActive="1" Field="addressLine1" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="129cdc02-dc58-4d0f-b42e-df68aaaec3c1" />
+                        <GIResult LineNbr="38" SortOrder="38" IsActive="1" Field="city" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="63df566e-c5ba-44b4-80ce-56e8e81d173e" />
+                        <GIResult LineNbr="37" SortOrder="37" IsActive="1" Field="state" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="d5cb7a70-4e98-4d5f-857e-1c24a99d155c" />
+                        <GIResult LineNbr="36" SortOrder="36" IsActive="1" Field="countryID" Caption="Country ID" IsVisible="0" DefaultNav="1" QuickFilter="0" FastFilter="0" RowID="8648df3d-0af8-45b5-a766-4ff5ffb81250" />
+                    </GITable>
+                    <SiteMap linkname="toDesignById">
+                        <row Position="1095" Title="Cases" Url="~/GenericInquiry/GenericInquiry.aspx?ID=24d48139-cf11-4be6-9bd3-57ee86893779" ScreenID="CR3060PL" NodeID="0ed84f06-e1aa-4ae8-b0ec-57e2d862912d" ParentID="12167736-ae7e-46ab-8a8c-dd4b86217519">
+                            <ListEntryPoint EntryScreenID="CR306000" IsActive="1" />
+                            <FilterHeader FilterID="0000c350-0000-0000-0000-000000000000" UserName="admin" ViewName="Results" FilterName="Case Summary" IsDefault="0" IsShared="1" IsShortcut="0" IsSystem="0" IsHidden="0" FilterOrder="50000">
+                                <FilterRow FilterRowNbr="7" OpenBrackets="0" DataField="CRCase_createdDateTime" Condition="10" ValueSt="@YearStart" ValueSt2="@YearEnd" CloseBrackets="0" Operator="0" IsUsed="1" FilterType="1" />
+                                <FilterRow FilterRowNbr="6" OpenBrackets="0" DataField="CRCase_sLAETA" Condition="0" CloseBrackets="0" Operator="0" IsUsed="0" FilterType="1" />
+                                <FilterRow FilterRowNbr="5" OpenBrackets="0" DataField="CRCase_caseClassID" Condition="0" ValueSt="" ValueSt2="" CloseBrackets="0" Operator="0" IsUsed="0" FilterType="1" />
+                                <FilterRow FilterRowNbr="4" OpenBrackets="0" DataField="CRCase_priority" Condition="0" ValueSt="" ValueSt2="" CloseBrackets="0" Operator="0" IsUsed="0" FilterType="1" />
+                                <FilterRow FilterRowNbr="3" OpenBrackets="0" DataField="CRCase_severity" Condition="0" ValueSt="" ValueSt2="" CloseBrackets="0" Operator="0" IsUsed="0" FilterType="1" />
+                                <FilterRow FilterRowNbr="2" OpenBrackets="0" DataField="CRCase_status" Condition="0" ValueSt="" ValueSt2="" CloseBrackets="0" Operator="0" IsUsed="0" FilterType="1" />
+                                <FilterRow FilterRowNbr="1" OpenBrackets="0" DataField="BAccount_acctCD" Condition="0" ValueSt="" ValueSt2="" CloseBrackets="0" Operator="0" IsUsed="0" FilterType="1" />
+                            </FilterHeader>
+                            <FilterHeader FilterID="0000c348-0000-0000-0000-000000000000" UserName="admin" ViewName="Results" FilterName="My Cases" IsDefault="0" IsShared="1" IsShortcut="0" IsSystem="0" IsHidden="0" FilterOrder="49992">
+                                <FilterRow FilterRowNbr="11" OpenBrackets="0" DataField="CRCase_ownerID" Condition="0" ValueSt="@me" CloseBrackets="0" Operator="0" IsUsed="1" FilterType="0" />
+                                <FilterRow FilterRowNbr="10" OpenBrackets="0" DataField="CRCase_sLAETA" Condition="0" CloseBrackets="0" Operator="0" IsUsed="0" FilterType="1" />
+                                <FilterRow FilterRowNbr="9" OpenBrackets="0" DataField="CRCase_caseClassID" Condition="0" ValueSt="" ValueSt2="" CloseBrackets="0" Operator="0" IsUsed="0" FilterType="1" />
+                                <FilterRow FilterRowNbr="8" OpenBrackets="0" DataField="CRCase_priority" Condition="0" ValueSt="" ValueSt2="" CloseBrackets="0" Operator="0" IsUsed="0" FilterType="1" />
+                                <FilterRow FilterRowNbr="7" OpenBrackets="0" DataField="CRCase_severity" Condition="0" ValueSt="" ValueSt2="" CloseBrackets="0" Operator="0" IsUsed="0" FilterType="1" />
+                                <FilterRow FilterRowNbr="6" OpenBrackets="0" DataField="CRCase_status" Condition="0" ValueSt="" ValueSt2="" CloseBrackets="0" Operator="0" IsUsed="0" FilterType="1" />
+                                <FilterRow FilterRowNbr="5" OpenBrackets="0" DataField="BAccount_acctCD" Condition="0" ValueSt="" ValueSt2="" CloseBrackets="0" Operator="0" IsUsed="0" FilterType="1" />
+                            </FilterHeader>
+                            <MUIScreen IsPortal="0" WorkspaceID="00000000-0000-0000-0000-000000000000" Order="643102" SubcategoryID="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa" />
+                        </row>
+                    </SiteMap>
+                    <SiteMap linkname="to1Screen">
+                        <row Position="1" Title="Cases" Url="~/Pages/CR/CR306000.aspx" NodeID="506891d3-d8cf-4982-9595-0317dd3161ee" ParentID="9cdabb78-df28-493d-9445-778148cdbee0">
+                            <FilterHeader FilterID="000000e3-0000-0000-0000-000000000000" UserName="admin" ViewName="Activities" FilterName="Open Activities" IsDefault="0" IsShared="1" IsShortcut="1" IsSystem="0" IsHidden="0" FilterOrder="227">
+                                <FilterRow FilterRowNbr="29" OpenBrackets="0" DataField="UIStatus" Condition="0" ValueSt="OP" ValueSt2="" CloseBrackets="0" Operator="0" IsUsed="1" FilterType="0" />
+                            </FilterHeader>
+                            <FilterHeader FilterID="000000e1-0000-0000-0000-000000000000" UserName="admin" ViewName="Activities" FilterName="Open Tasks And Events" IsDefault="0" IsShared="1" IsShortcut="1" IsSystem="0" IsHidden="0" FilterOrder="225">
+                                <FilterRow FilterRowNbr="27" OpenBrackets="0" DataField="ClassInfo" Condition="0" ValueSt="Event" CloseBrackets="1" Operator="0" IsUsed="1" FilterType="0" />
+                                <FilterRow FilterRowNbr="26" OpenBrackets="1" DataField="ClassInfo" Condition="0" ValueSt="Task" CloseBrackets="0" Operator="1" IsUsed="1" FilterType="0" />
+                                <FilterRow FilterRowNbr="25" OpenBrackets="0" DataField="UIStatus" Condition="0" ValueSt="OP" ValueSt2="" CloseBrackets="0" Operator="0" IsUsed="1" FilterType="0" />
+                            </FilterHeader>
+                            <MUIScreen IsPortal="0" WorkspaceID="e4060891-27de-4ced-959f-a2c146ef6473" Order="10" SubcategoryID="3979c713-17f5-49c3-839e-3602cb043bcf">
+                                <MUIPinnedScreen IsPortal="0" Username="" IsPinned="1" />
+                            </MUIScreen>
+                            <MUITile IsPortal="0" TileID="f6fee66f-b015-43f6-a10e-cdf281c920f8" WorkspaceID="e4060891-27de-4ced-959f-a2c146ef6473" Order="3008" Title="New Case" Icon="life-bouy" Parameters="CaseCD=" />
+                        </row>
+                    </SiteMap>
+                </row>
+            </GIDesign>
+            <MUIWorkspace>
+                <row IsPortal="0" WorkspaceID="e4060891-27de-4ced-959f-a2c146ef6473" Order="329.3125" Title="Support" Icon="life-bouy" AreaID="62cfd5dc-8eb9-4e92-bbcd-e0a99eb5e5df" ScreenID="WSSP0000" IsSystem="0" />
+            </MUIWorkspace>
+            <MUISubcategory>
+                <row IsPortal="0" SubcategoryID="3979c713-17f5-49c3-839e-3602cb043bcf" Order="32" Name="Activities" Icon="" IsSystem="0" />
+            </MUISubcategory>
+            <MUIArea>
+                <row IsPortal="0" AreaID="62cfd5dc-8eb9-4e92-bbcd-e0a99eb5e5df" Order="20" Name="Operations" />
+            </MUIArea>
+        </data>
+    </data-set>
+</GenericInquiryScreen>

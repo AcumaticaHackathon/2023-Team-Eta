@@ -1,6 +1,5 @@
 ﻿using ACPROpenAI.Descriptor.Views;
 using ACPROpenAI.GraphExtensions.CR.DAC;
-using ACPROpenAI.GraphExtensions.CR.DAC.Projection;
 using ACPROpenAI.Helpers.Extensions;
 using ACPROpenAI.Models;
 using ACPROpenAI.Services.Abstractions;
@@ -8,18 +7,8 @@ using PX.Data;
 using PX.Data.WorkflowAPI;
 using PX.Objects.CR;
 using PX.Objects.CS;
-using PX.Objects.IN;
-using PX.Objects.SO;
 using PX.Web.UI;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PX.Data.BQL;
-using PX.Data.BQL.Fluent;
-using PX.Objects.AR;
-using PX.Data.Licensing;
-using Contact = PX.Objects.CR.Contact;
 using System;
 
 namespace ACPROpenAI.GraphExtensions.CR
