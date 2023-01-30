@@ -1,6 +1,0 @@
-D:\SourceCode\Summit2023\RepositoryOfTeam\2023-team-eta\DLLCode\bin\Debug\ACPROpenAI.dll
-D:\SourceCode\Summit2023\RepositoryOfTeam\2023-team-eta\DLLCode\bin\Debug\ACPROpenAI.pdb
-D:\SourceCode\Summit2023\RepositoryOfTeam\2023-team-eta\DLLCode\obj\Debug\ACPROpenAI.csproj.AssemblyReference.cache
-D:\SourceCode\Summit2023\RepositoryOfTeam\2023-team-eta\DLLCode\obj\Debug\ACPROpenAI.csproj.CoreCompileInputs.cache
-D:\SourceCode\Summit2023\RepositoryOfTeam\2023-team-eta\DLLCode\obj\Debug\ACPROpenAI.dll
-D:\SourceCode\Summit2023\RepositoryOfTeam\2023-team-eta\DLLCode\obj\Debug\ACPROpenAI.pdb
