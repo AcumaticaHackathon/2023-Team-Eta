@@ -1,0 +1,6 @@
+D:\Source\C#\Hackathon\2023-Team-Eta\ACPROOpenAI\bin\Debug\ACPROpenAI.dll
+D:\Source\C#\Hackathon\2023-Team-Eta\ACPROOpenAI\bin\Debug\ACPROpenAI.pdb
+D:\Source\C#\Hackathon\2023-Team-Eta\ACPROOpenAI\obj\Debug\ACPROOpenAI.csproj.AssemblyReference.cache
+D:\Source\C#\Hackathon\2023-Team-Eta\ACPROOpenAI\obj\Debug\ACPROOpenAI.csproj.CoreCompileInputs.cache
+D:\Source\C#\Hackathon\2023-Team-Eta\ACPROOpenAI\obj\Debug\ACPROpenAI.dll
+D:\Source\C#\Hackathon\2023-Team-Eta\ACPROOpenAI\obj\Debug\ACPROpenAI.pdb
